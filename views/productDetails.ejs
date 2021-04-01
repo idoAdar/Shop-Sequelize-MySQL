@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/navigation.css">
+    <link rel="stylesheet" href="/product.css">
+    <title><%= prod.item %></title>
+</head>
+<body>
+    <%- include('./includes/navigation.ejs') %>
+    <main class="card product-item">
+        <h1><%= prod.item %></h1>
+        <div>
+            <img src="<%= prod.img %>" alt="IMG" class="justimg">
+        </div>
+        <h2><%= prod.price %> $</h2>
+        <p><%= prod.description %></p>
+        <form action="/cart" method="POST">
+            <button type="submit" class="btn">Add to Cart</button>
+            <input type="hidden" value="<%= prod.id %>" name="id">
+            <input type="hidden" value="<%= prod.item %>" name="item">
+        </form>
+    </main>
+</body>
+</html>

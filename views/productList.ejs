@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/navigation.css">
+    <link rel="stylesheet" href="/product.css">
+    <title><%= title %></title>
+</head>
+<body>
+    <%- include('./includes/navigation.ejs') %>
+
+    <main>
+        <% if (prod.length > 0) { %>
+        <div class="grid">
+        <% for (let product of prod) { %>
+            <article class="card product-item">
+                <header class="card__header">
+                    <h1 class="product__title"><%= product.item %></h1>
+                </header>
+                <div class="card__image">
+                    <img src="<%= product.img %>" alt="IMG">
+                </div>
+                <div class="card__content">
+                    <h2 class="product__price"><%= product.price %> $</h2>
+                    <p class="product__description"><%= product.description %></p>
+                </div>
+                <div class="card__actions">
+                    <a href="<%= product.id %>" class="btn">Details</a>
+                    <form action="/cart" method="POST">
+                        <button type="submit" class="btn">Add to Cart</button>
+                        <input type="hidden" value="<%= product.id %>" name="id">
+                        <input type="hidden" value="<%= product.item %>" name="item">
+                    </form>
+                </div>
+            </article>
+            <% } %>
+            <% } %>
+        </div>
+    </main>
+</body>
+</html>
